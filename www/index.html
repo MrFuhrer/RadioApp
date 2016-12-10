@@ -28,6 +28,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
+        <meta charset="utf-8">
         <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
@@ -41,17 +42,18 @@
     <body ng-controller="BodyController as bodyController" class="{{bodyController.bclass}}">
 
     <header>
-        <span class="heading">الرئيسية</span>
+        <span class="heading">{{bodyController.pageTitle}}</span>
+        <div class="preloader" ng-show="isLoading"></div>
     </header>
 
         <div ui-view></div>
 
     <footer>
         <ul>
-            <li><a href="#"><img src="images/menu/1.png"></a></li>
-            <li><a href="#/live"><img src="images/menu/2.png"></a></li>
-            <li><a href="#"><img src="images/menu/3.png"></a></li>
-            <li><a href="#/main"><img src="images/menu/4.png"></a></li>
+            <li><a href="#/contact"><img ng-src="{{bodyController.bclass=='contact' ? 'images/menu/1_active.png':'images/menu/1.png'}}"></a></li>
+            <li><a href="#/live"><img ng-src="{{bodyController.bclass=='live' ? 'images/menu/2_active.png':'images/menu/2.png'}}"></a></li>
+            <li><a href="#/programs"><img ng-src="{{bodyController.bclass=='programs' ? 'images/menu/3_active.png':'images/menu/3.png'}}"></a></li>
+            <li><a href="#/main"><img ng-src="{{bodyController.bclass=='' ? 'images/menu/4_active.png':'images/menu/4.png'}}"></a></li>
         </ul>
     </footer>
 

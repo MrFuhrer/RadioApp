@@ -17,7 +17,7 @@ body {
 header  {
     width: 100%;
     background-color: #ebe13a;
-    background-image: url(../images/header-bg%20.png);
+    background-image: url(../images/header-bg.png);
     background-size: contain;
     height: 60px;
     position: relative;
@@ -26,7 +26,7 @@ header  {
 }
 
 header div.container{
-    background-image: url(../images/header-bg%20.png);
+    background-image: url(../images/header-bg.png);
     background-repeat: no-repeat;
     opacity: 1;
     width: 45%;
@@ -53,6 +53,12 @@ header .heading {
 
 .content .content-header {
     position: relative;
+}
+.content .content-header .baner {
+    /*height: 270px;*/
+}
+body.programs .content .content-header .baner {
+    height: 190px;
 }
 .content .content-header .baner img{
     width: 100%;
@@ -97,7 +103,6 @@ header .heading {
     direction: rtl;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding-bottom: 100px;
 }
 
 .post-header {
@@ -166,4 +171,126 @@ footer ul li a img {
 .dis-inline-block {
     position: relative;
     z-index: 5;
+}
+
+.pControl, .vControl {
+    width: 43px;
+    height: 43px;
+    display: inline-block;
+    background-size: 100% 100%;
+}
+
+.pControl.playing {
+    background-image: url(../images/pause.png);
+}
+.pControl.paused {
+    background-image: url(../images/play.png);
+}
+.vControl.disabled {
+    background-image: url(../images/volume-disabled.png);
+}
+.vControl.enabled {
+    background-image: url(../images/volume.png);
+}
+.streamControl {
+    position: relative;
+    z-index: 5;
+}
+.streamControl .images {
+    padding-top: 10px;
+    background: #4991ce;
+    width: 100%;
+}
+
+.streamControl.white .title {
+    color: #e8dd26 !important;
+}
+.streamControl.white .vControl, .streamControl.white .pControl, .streamControl.white img {
+    filter: brightness(10000%);
+    -webkit-filter: brightness(10000%);
+}
+.streamControl.white img {
+    height: 30px;
+    width: auto !important;
+}
+
+body.programs {
+    background-image: url(../images/programs-body-bg.png);
+    background-size: cover;
+}
+body.program {
+    background: #c4c4c4 !important;
+}
+
+.programs .post-container p {
+    color: #FFF;
+}
+
+.programs .post-container h4 {
+    color: #4991ce;
+    font-size: 12px;
+}
+
+.programs .post-container img {
+    border-radius: 2px;
+    max-width: 80px;
+}
+
+.prog-title {
+    position: relative;
+    top: -70px;
+    font-size: 16px;
+    color: #FFF;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.program-info {
+    position: relative;
+    top: -50px;
+    font-weight: bold;
+    height: 150px;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding: 0 10px;
+}
+
+.program-info .pTitle {
+    color: #3971a1;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.post .post-img-container {
+    float: right;
+    width: 80px;
+    height: auto !important;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.post .post-img-container img {
+    width: 100%;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.post h4, .post p {
+    width: calc(100% - 90px);
+    float: left;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    max-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.preloader {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    right: 0;
+    top: 0;
+    background: url(../images/preloader.gif);
+    background-size: 250% 200%;
+    background-position: center;
 }

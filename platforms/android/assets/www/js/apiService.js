@@ -1,11 +1,9 @@
 app.service('$api', ['$http', function($http) {
-    var apiUrl = "/api/api.php";
+    var apiUrl = "http://35.165.142.89/api";
 
-    this.get = function(command, data, callback, error) {
-        $http.post(apiUrl, {
-            c: command,
-            params: data
-        }).success(function(data) {
+    this.get = function(url, data, callback, error) {
+
+        $http.post(apiUrl+url, data).success(function(data) {
             if(callback) {
                 callback(data);
             }
@@ -14,5 +12,6 @@ app.service('$api', ['$http', function($http) {
                 error(data);
             }
         });
+
     }
 }]);

@@ -142,6 +142,7 @@ body.live {
         margin-top: 40px !important;
         height: 180px;
         width: 180px;
+        line-height: 180px !important;
     }
     .social-icons {
         margin-top: 10px;
