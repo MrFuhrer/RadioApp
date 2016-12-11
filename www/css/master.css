@@ -222,6 +222,13 @@ body.program {
     background: #c4c4c4 !important;
 }
 
+body.news {
+    background: #d2d2d2;
+}
+body.contact {
+    background: url(../images/contact-body-bg.png);
+    background-size: cover;
+}
 .programs .post-container p {
     color: #FFF;
 }
@@ -239,10 +246,12 @@ body.program {
 .prog-title {
     position: relative;
     top: -70px;
-    font-size: 16px;
+    font-size: 15px;
     color: #FFF;
     font-weight: bold;
     padding-left: 10px;
+    max-width: 54%;
+    line-height: 18px;
 }
 
 .program-info {
@@ -294,3 +303,72 @@ body.program {
     background-size: 250% 200%;
     background-position: center;
 }
+
+.news-desc {
+    padding-left: 50px;
+}
+
+.contact-title {
+    margin-top: 5px;
+    font-size: 15px;
+    color: #FFF;
+    direction: rtl;
+}
+
+div.contact-form {
+    display: block;
+    width: 80%;
+    direction: rtl;
+    margin: 0 auto;
+}
+form.contact-form {
+    overflow-y: auto;
+    padding-left: 10px;
+}
+.contact-form input, .contact-form textarea {
+    background: #FFF;
+    border: none;
+    border-radius: 5px;
+    display: block;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 30px;
+    margin-bottom: 5px;
+    resize: none;
+    font-family: jfflatregular;
+    outline: none;
+}
+
+.contact-form textarea {
+    height: 50px;
+}
+
+.contact-form textarea::-webkit-input-placeholder, .contact-form input::-webkit-input-placeholder {
+    color: #000;
+}
+
+.contact-form button {
+    float: left;
+    background: #ece133;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 30px;
+    color: #FFF;
+    font-family: jfflatregular;
+    outline: none;
+}
+
+@media (max-width:320px), (max-height: 500px) {
+    body.contact .baner > div {
+        max-height: 140px !important;
+    }
+}
+
+
+@media (max-height: 580px) {
+    body.contact .baner > div {
+        max-height: 180px !important;
+    }
+}
+

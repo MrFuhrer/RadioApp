@@ -29,7 +29,7 @@
     </div>
     <div class="post-container">
 
-        <div class="post" ng-repeat="item in news">
+        <div class="post" ng-repeat="item in news" ng-click="open(item.id)">
             <div class="post-img-container">
                 <img ng-src="http://35.165.142.89{{item.image}}" align="right">
             </div>

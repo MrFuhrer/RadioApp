@@ -4,7 +4,8 @@ var titles = {
     live: "البث المباشر",
     programs: "خلكم وينا",
     program: "برامجنا",
-    news: "آخر الأخبار"
+    news: "آخر الأخبار",
+    contact: "برامجنا"
 };
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider, $httpParamSerializerProvider) {
 
@@ -26,6 +27,12 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, $httpPara
         templateUrl: 'views/programs.html',
         bclass: "programs"
     })
+    .state('contact', {
+        url: '/contact',
+        controller: 'contactController',
+        templateUrl: 'views/contact.html',
+        bclass: "contact"
+    })
     .state('program', {
         url: '/program/{id:int}',
         controller: 'programController',
@@ -34,8 +41,9 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, $httpPara
     })
     .state('news', {
         url: '/news/{id:int}',
-        controller: 'programController',
-        templateUrl: 'views/news.html'
+        controller: 'newsController',
+        templateUrl: 'views/news.html',
+        bclass: 'news'
     });
 
     $urlRouterProvider.otherwise('/');
@@ -74,6 +82,7 @@ app.controller("mainController", function($scope, $http, $state, $api, $timeout)
 
     $scope.open = function(id) {
         $state.go("news",{id:id});
+        console.log(id);
     };
 
 });
@@ -112,12 +121,36 @@ app.controller('programsController', function ($scope,$state,$api, $timeout) {
     };
 });
 
+app.controller('contactController', function ($scope,$state,$api, $timeout) {
+    $scope.$on('$viewContentLoaded', function() {
+        $timeout(function() {
+            fixHeight(document.querySelector("form.contact-form"));
+        }, 300);
+    });
+
+    $scope.submit = function() {
+       $api.get("/contact", {
+           name: $scope.name,
+           email: $scope.email,
+           message: $scope.text
+       }, function(data) {
+            if(data.success) {
+                document.querySelector(".response").textContent = "Sent successfully";
+            } else {
+                document.querySelector(".response").textContent = "Error sending message";
+            }
+       }, function() {
+           document.querySelector(".response").textContent = "Error sending message";
+       });
+    }
+});
+
 app.controller('programController', function($scope, $stateParams, $timeout, $api) {
 
     $scope.program = {
-        title: "خلكم وينا",
-        post_whole: "سهرة منوعة في مضمونها ومنوعة في أماكن نقلها على الهواء مباشرة، تستضيف نخبة من رموز المجتمع الإماراتي المحلي و العربي، وتناقش معهم في جو من المرح والألفة موضوعات شتى، ما بين الاجتماعية والتوعوية والرياضية والتراثية، كما ستطرح من خلاله مسابقة يسودها جو من المتعة والترفيه الذي لا يخلو من الفائدة وحماس المشاركة والمنافسة بين موظفي دوائر حكومة الشارقة.",
-        broadcasts: "يومياً 22:30 ، بتوقيت دولة الإمارات"
+        title: "...",
+        post_whole: "...",
+        broadcast: "..."
     };
 
 
@@ -132,7 +165,25 @@ app.controller('programController', function($scope, $stateParams, $timeout, $ap
         }
     });
 
+});
 
+app.controller('newsController', function($scope, $stateParams, $timeout, $api) {
+
+    $scope.news = {
+        title: "...",
+        post_whole: "..."
+    };
+
+    $scope.$parent.isLoading = true;
+    $api.get('/news', {
+        'id':$stateParams.id
+    }, function(data) {
+        if(data.success) {
+            $scope.$parent.isLoading = false;
+            $scope.news = data.result;
+            fixHeight(document.querySelector(".program-info"));
+        }
+    });
 
 });
 
@@ -165,7 +216,7 @@ app.controller('BodyController', function($scope) {
         }
     });
 
-    $scope.streamSrc = "http://ec2-35-165-142-89.us-west-2.compute.amazonaws.com:8000/live";
+    $scope.streamSrc = "http://35.165.142.89:8000/live";
 
     this.streamState = "playing";
     this.streamVolumeState = "enabled";
